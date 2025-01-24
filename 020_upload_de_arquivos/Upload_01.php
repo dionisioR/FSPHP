@@ -21,13 +21,16 @@
 
 
         <?php
-        // criando o diretório para upload
+        // criando o diretório para upload para onde os arquivos serão enviados
         $folder = __DIR__ . "/uploads";
 
         if (!file_exists($folder) || !is_dir($folder)) {
             mkdir($folder, 0755);
         }
 
+        // exibindo o tamanho máximo de upload de arquivos
+        // limites establecidos no php.ini
+        echo "<h3>Limites de Upload</h3> <hr/>";
         echo "<pre>";
         var_dump([
             "filesize" => ini_get("upload_max_filesize"),  // tamanho máximo por arquivo individual
@@ -35,18 +38,52 @@
         ]);
         echo "</pre>";
 
+
+
+
+
+        // O que não podemos aceitar em nossa aplicação
+        // aqui nós falamos de segurança
+
+        // devemos sempre validar o MIME_CONTENT_TYPE
+        // Neste exemplo devemos verificar o tipo de arquivo que estamos recebendo
+        // devemos ter muito cuidado com os tipos de arquivos que estamos recebendo
+        // pois podem ser arquivos maliciosos
+
+        // regra básica: dizemos o que aceitamos e nunca o que não aceitamos
+        // e vamos utilizar o MIME_CONTENT_TYPE para isso
+        echo "<h3>Arquivos não permitidos</h3> <hr/>";
+        echo "<pre>";
+        var_dump([
+            filetype(__DIR__ . "/index.php"),  // retorna o tipo de arquivo
+            mime_content_type(__DIR__ . "/index.php")  // retorna o tipo de conteúdo
+        ]);
+        echo "</pre>";
+
+
         // validando o tipo de arquivo 
         $getPost = filter_input(INPUT_GET, "post", FILTER_VALIDATE_BOOLEAN);  // retorna true/false
+        echo $getPost ? "Sim <<<<<" : "Não <<<<<";
+
+        echo '<hr/>';
+
+        //    $_FILES  - variável global que verifica se existe o arquivo
+        echo '<pre>';
+        var_dump($_FILES);
+        echo '</pre>';
+
+
+        echo '<hr/>';
 
         //    $_FILES  - variável global que verifica se existe o arquivo
         if ($_FILES && !empty($_FILES['file']['name'])) {
             echo '<pre>';
             var_dump($_FILES);
             echo '</pre>';
-        }elseif($getPost){
+        } elseif ($getPost) {
             echo '<div class="alert alert-danger" role="alert">Opsss!!!<br> Parece que o arquivo é muito grande!</div>';
-        }else{
-            if($_FILES){
+        } else {
+            if ($_FILES) {
                 echo '<div class="alert alert-danger" role="alert">Opsss!!!<br> Selecione um arquivo para enviar!</div>';
             }
         }

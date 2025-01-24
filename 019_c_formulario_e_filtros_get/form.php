@@ -48,6 +48,28 @@
             echo '</pre>';
 
 
+            echo '<br><h2>Validando filter_var</h2>';
+            // depois que recebemos os dados do formulário, podemos validar os dados 
+            // utilizando o filter_var 
+            echo '<pre>';
+            $email = 'rd3w@g.com';
+            $nome = 'RD3W';
+            var_dump([
+                'name' => filter_var($nome, FILTER_DEFAULT),
+                'email' => filter_var($email, FILTER_VALIDATE_EMAIL)
+            ]);
+            echo '</pre>';
+            echo '<hr>';
+
+            echo '<pre>';
+            $email = 'rd3w@';
+            $nome = '';
+            var_dump([
+                'name' => filter_var($nome, FILTER_DEFAULT),
+                'email' => filter_var($email, FILTER_VALIDATE_EMAIL)
+            ]);
+            echo '</pre>';
+
 
         ?>
 

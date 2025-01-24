@@ -14,7 +14,7 @@
     
     <main class="container">
     <!-- <form action="./?post=true" method="post" enctype="multipart/form-data"> -->
-    <form action="./Upload_01.php" method="post" enctype="multipart/form-data">
+    <form action="./Upload_01.php?post=true" method="post" enctype="multipart/form-data">
             <p>
                 <a href="./" title="Atualizar">Atualizar</a>
             </p>
