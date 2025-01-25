@@ -19,7 +19,7 @@
                 <a href="./" title="Atualizar">Atualizar</a>
             </p>
             <div class="mb-3">
-                <label for="file" class="form-label">Arquivo</label>
+                <la for="file" class="form-label">Arquivo</la bel>
                 <input type="file" class="form-control" name="file">
             </div>
             <button class="btn btn-primary">Enviar Agora!</button>

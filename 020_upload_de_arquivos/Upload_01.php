@@ -80,6 +80,41 @@
             echo '<pre>';
             var_dump($_FILES);
             echo '</pre>';
+
+            // TRATANDO O ARQUIVO
+            $flieUpload = $_FILES['file'];
+            // echo '<pre>';
+            // var_dump($flieUpload);
+            // echo '</pre>';
+
+            // Tipos de arquivos permitidos
+            $tiposPermitidos = [
+                "image/jpg",
+                "image/jpeg",
+                "image/png",
+                "application/pdf",
+            ];
+
+
+            // criando o nome do arquivo dinaicamente
+            // mb_strstr - retorna a parte da string após a primeira ocorrência de uma substring (neste caso o ponto)
+            $newFileName = time() . mb_strstr($flieUpload['name'], ".");
+            // echo $newFileName;
+
+            // validando o tipo de arquivo (verifica se a extensão do arquivo está no array de tipos permitidos)
+            if (in_array($flieUpload['type'], $tiposPermitidos)) { 
+
+                // movendo o arquivo da pasta temporária para a pasta uploads
+                if (move_uploaded_file($flieUpload['tmp_name'], __DIR__ . "/uploads/{$newFileName}")) {
+                    echo '<div class="alert alert-success" role="alert">Arquivo enviado com sucesso!</div>';
+                } else {
+                    echo '<div class="alert alert-danger" role="alert">Opsss!!!<br> Falha ao enviar o arquivo!</div>';
+                }
+
+            }else{
+                echo '<div class="alert alert-danger" role="alert">Opsss!!!<br> Tipo de arquivo inválido!</div>';
+            }
+
         } elseif ($getPost) {
             echo '<div class="alert alert-danger" role="alert">Opsss!!!<br> Parece que o arquivo é muito grande!</div>';
         } else {
