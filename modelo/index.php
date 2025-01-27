@@ -21,41 +21,25 @@
             font-weight: 300;
             color: #ccc;
         }
-
     </style>
 </head>
 
 <body>
+
+    <?php
+    require __DIR__ . "/source/autoload.php";
+    ?>
     <header class="text-center p-5">
-        <h1 class="display-3">Formulários e Filtros</h1>
+        <h1 class="display-3">Relacionamento entre Objetos</h1>
     </header>
 
     <main class="container">
         <h2 class="">
-           Request
+            Associação
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
-        <?php
-
-       
-
-
-        ?>
-
-
-        <br><br>
-
-
-
-        <h2 class="">
-           Get
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-        
         <?php
 
 
@@ -63,13 +47,16 @@
 
         ?>
         <br><br>
+        <!--################################################# -->
+        <!--################################################# -->
+
         <h2 class="">
-           Post
+            Agregação
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
-        
+
         <?php
 
 
@@ -77,21 +64,26 @@
 
         ?>
         <br><br>
-
-
-
+        <!--################################################# -->
+        <!--################################################# -->
 
         <h2 class="">
-         Filters
+            Composição
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
-        
+
         <?php
 
 
+
+
         ?>
+         <br><br>
+        <!--################################################# -->
+        <!--################################################# -->
+
 
     </main>
     <footer class="text-center fixed-bottom">
