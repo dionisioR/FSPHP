@@ -27,12 +27,12 @@
 
 <body>
     <header class="text-center p-5">
-        <h1 class="display-3">Formulários e Filtros</h1>
+        <h1 class="display-3">Interpretação e operação</h1>
     </header>
 
     <main class="container">
         <h2 class="">
-           Request
+           __set
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
@@ -50,7 +50,7 @@
 
 
         <h2 class="">
-           Get
+           __get
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
@@ -64,7 +64,7 @@
         ?>
         <br><br>
         <h2 class="">
-           Post
+           __isset
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
@@ -82,7 +82,29 @@
 
 
         <h2 class="">
-         Filters
+         __call
+            <span>
+                | Linha <?= __LINE__ ?>
+            </span>
+        </h2>
+        
+        <?php
+
+
+        ?>
+        <h2 class="">
+         __toString
+            <span>
+                | Linha <?= __LINE__ ?>
+            </span>
+        </h2>
+        
+        <?php
+
+
+        ?>
+        <h2 class="">
+         __unset
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
