@@ -27,20 +27,32 @@
 
 <body>
     <header class="text-center p-5">
-        <h1 class="display-3">Formulários e Filtros</h1>
+        <h1 class="display-3">Carregamento Automático</h1>
     </header>
 
     <main class="container">
         <h2 class="">
-           Request
+           Autoload spl_autoload
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
         <?php
 
+        // require __DIR__ . "/source/Loading/User.php";
+        // require __DIR__ . "/source/Loading/Address.php";
+        // require __DIR__ . "/source/Loading/Company.php";
+
+        require __DIR__ . "/source/autoload.php";
        
+        $user = new Source\Loading\User();
+        $address = new Source\Loading\Address();
+        $company = new Source\Loading\Company();
 
+        echo "<br>";
+        echo "<pre>";
+        var_dump($user, $address, $company);
+        echo "</pre>";
 
         ?>
 
@@ -50,7 +62,7 @@
 
 
         <h2 class="">
-           Get
+           Autoload composer
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
@@ -63,35 +75,7 @@
 
         ?>
         <br><br>
-        <h2 class="">
-           Post
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-        
-        <?php
-
-
-
-
-        ?>
-        <br><br>
-
-
-
-
-        <h2 class="">
-         Filters
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-        
-        <?php
-
-
-        ?>
+       
 
     </main>
     <footer class="text-center fixed-bottom">

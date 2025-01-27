@@ -27,19 +27,26 @@
 
 <body>
     <header class="text-center p-5">
-        <h1 class="display-3">Formulários e Filtros</h1>
+        <h1 class="display-3">Construct, clone e destruct</h1>
     </header>
 
     <main class="container">
         <h2 class="">
-           Request
+           __construct
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
         <?php
 
+        require __DIR__ . "/source/autoload.php";
        
+        // $user = new \Source\Interpretation\User();
+        $user = new \Source\Interpretation\User("Rd3w", "Cursos", "rd3w@g.com");
+
+        echo "<pre>";
+        var_dump($user);
+        echo "</pre>";
 
 
         ?>
@@ -50,7 +57,26 @@
 
 
         <h2 class="">
-           Get
+           __clone
+            <span>
+                | Linha <?= __LINE__ ?>
+            </span>
+        </h2>
+        
+        <?php
+
+        $user2 = clone $user;
+        $user2->setFirstName("Rd3w2");
+        echo "<pre>";
+        var_dump($user2);
+        echo "</pre>";
+
+
+
+        ?>
+        <br><br>
+        <h2 class="">
+           __destruct
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
@@ -63,35 +89,10 @@
 
         ?>
         <br><br>
-        <h2 class="">
-           Post
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-        
-        <?php
 
 
 
 
-        ?>
-        <br><br>
-
-
-
-
-        <h2 class="">
-         Filters
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-        
-        <?php
-
-
-        ?>
 
     </main>
     <footer class="text-center fixed-bottom">
