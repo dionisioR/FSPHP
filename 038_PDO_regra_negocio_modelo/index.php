@@ -30,65 +30,63 @@
     require __DIR__ . "/source/autoload.php";
 
     use Source\Database\Connect;
+    use Source\Models\UserModel;
+
     ?>
     <header class="text-center p-5">
-        <h1 class="display-3">Relacionamento entre Objetos</h1>
+        <h1 class="display-3">Regra de negócio e modelo</h1>
     </header>
 
     <main class="container">
         <h2 class="">
-            Controle de erros
+            layer
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
         <?php
+        // [layer] é uma classe base que implementa os métodos de persistência e servera todos os modelos. Essa é uma layer supertype
 
+        $layer = new ReflectionClass(\Source\Models\Model::class);
 
+        echo "<pre>";
+        // var_dump(
+        //     $layer->getDefaultProperties(),
+        //     $layer->getMethods()
+        // );
+        print_r($layer->getDefaultProperties());
+        print_r($layer->getMethods());
+        echo "</pre>";
 
 
         ?>
         <br><br>
-        <!-- ------------------------------------------------------------ -->
 
 
 
 
         <h2 class="">
-            Php Data Object
+            model
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
 
         <?php
+        // [model] cada rotina em um sistema tem uma regra de negócio. Um modelo server para abstrair essas rotinas se responsabilizando pelas regras.
+        $model = new \Source\Models\UserModel();
 
-
-
-
-        ?>
-        <br><br>
-        <!-- ------------------------------------------------------------ -->
-
-
-
-
-
-        <h2 class="">
-            Conexão com singleton
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-
-        <?php
-
-
+        echo "<pre>";
+        print_r($model);
+        print_r(get_class_methods($model));
+        echo "</pre>";
 
 
         ?>
         <br><br>
-        <!-- ------------------------------------------------------------ -->
+
+
+
 
 
 

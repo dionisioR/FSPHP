@@ -32,63 +32,46 @@
     use Source\Database\Connect;
     ?>
     <header class="text-center p-5">
-        <h1 class="display-3">Relacionamento entre Objetos</h1>
+        <h1 class="display-3">Transações</h1>
     </header>
 
     <main class="container">
         <h2 class="">
-            Controle de erros
+            Trasaction
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
         <?php
+        ############################################################
+        ############################################################
 
+        try {
+            $pdo = Connect::getInstance();
+            $pdo->beginTransaction();
 
+            $pdo->query("INSERT INTO users (first_name, last_name, email, document) VALUES ('João', 'Brito', 'jb@g.email', 12345678999)");
 
+            $userId = $pdo->lastInsertId();
 
-        ?>
-        <br><br>
-        <!-- ------------------------------------------------------------ -->
+            $pdo->query(
+                "INSERT INTO users_address (user_id, street, number, complement) VALUES ({$userId}, 'Rua dos desenvolvedores', '123', 'Casa');
+                "
+            );
 
-
-
-
-        <h2 class="">
-            Php Data Object
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-
-        <?php
-
-
-
-
-        ?>
-        <br><br>
-        <!-- ------------------------------------------------------------ -->
-
-
-
-
-
-        <h2 class="">
-            Conexão com singleton
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-
-        <?php
-
-
+            $pdo->commit();
+            echo "<p class='alert alert-success'>Usuário cadastrado com sucesso!</p>";
+        } catch (PDOException $exception) {
+            $pdo->rollBack();
+            echo "<p class='alert alert-danger'>{$exception->getMessage()}</p>";
+        }
 
 
         ?>
         <br><br>
-        <!-- ------------------------------------------------------------ -->
+
+
+
 
 
 
