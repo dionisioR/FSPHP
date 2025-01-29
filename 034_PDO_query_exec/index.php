@@ -28,79 +28,77 @@
 
     <?php
     require __DIR__ . "/source/autoload.php";
+
+    use Source\Database\Connect;
     ?>
     <header class="text-center p-5">
-        <h1 class="display-3">Erro, conexão e execução
-        </h1>
+        <h1 class="display-3">Cosulta com query e exec</h1>
     </header>
 
     <main class="container">
         <h2 class="">
-            Controle de erros
+            Insert
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
         <?php
         ############################################################
+        #### EXEC - Retorna 0 ou 1 - Não retorna dados (INSERT, UPDATE, DELETE) ####
         ############################################################
 
-        // try{
-        //     throw new Exception("Erro de teste", 1);
-        // }catch(Exception $e){
-        //     echo "<p class='alert alert-danger'>Erro: {$e->getCode()} - Mensagem: {$e->getMessage()}</p>";
-        // }
+        $insert = "
+        INSERT INTO users (first_name, last_name, email, document) VALUES ('Juca', 'Pedrito', 'juca@example.com', '98798798798')
+        ";
 
         try {
-            throw new PDOException("Erro de teste", 1);
-            throw new Exception("Erro de teste", 1);
-        } catch (PDOException | ErrorException $e) {
-            echo "<p class='alert alert-danger'>Erro: {$e->getCode()} - Mensagem: {$e->getMessage()}. <br> {$e}</p>";
-        }catch (Exception $e) {
-            echo "<p class='alert alert-danger'>Erro: {$e->getCode()} - Mensagem: {$e->getMessage()}. <br> {$e}</p>";
-        }finally{
-            echo "<p class='alert alert-warning'>Finalizando o bloco try</p>";
-        }
+            // $exec = Connect::getInstance()->exec($insert);
+            $exec = null;
 
+            $query = Connect::getInstance()->query($insert);
 
-        ?>
-        <br><br>
+            echo "<pre>";
+            var_dump(Connect::getInstance()->lastInsertId());
+            print_r($exec);
+            print_r($query);
+            print_r( $query->rowCount());
+            print_r( $query->errorInfo());
+            echo "</pre>";
 
-
-
-
-        <h2 class="">
-            Php Data Object
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-
-        <?php
-        ############################################################
-        ############################################################
-
-        try {
-            // $pdo = new PDO(dsn, user, pwd, options);
-            $pdo = new PDO(
-                "mysql:host=localhost;dbname=fsphp", 
-                "root", 
-                "",
-                [
-                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-                ]
-            );
         } catch (PDOException $e) {
             var_dump($e);
         }
 
-        // var_dump($pdo);
+        ?>
+        <br><br>
 
-        // O PDO traz ao mesmo tempo um array associativo e um array indexado
-        $stmt = $pdo->query("SELECT * FROM users LIMIT 3");
-        while($user = $stmt->fetch(PDO::FETCH_ASSOC)){
-            print_r($user);
-            echo "<br><br>";
+
+
+
+        <h2 class="">
+            Select
+            <span>
+                | Linha <?= __LINE__ ?>
+            </span>
+        </h2>
+
+        <?php
+        ############################################################
+        ############################################################
+
+        try {
+            $query = Connect::getInstance()->query("SELECT * FROM users Limit 3");
+
+            echo "<pre>";
+            print_r($query); 
+            echo '<br><br>';
+            print_r($query->rowCount());
+            echo '<br><br>';
+
+            print_r($query->fetchAll());
+            echo "</pre>";
+        } catch (PDOException $e) {
+            var_dump($e);
         }
 
         ?>
@@ -111,7 +109,7 @@
 
 
         <h2 class="">
-            Conexão com singleton
+            Update
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
@@ -121,24 +119,43 @@
         ############################################################
         ############################################################
 
-        require __DIR__ . "/source/autoload.php";
 
-        use Source\Database\Connect;
+        try {
 
-        $pdo1 = Connect::getInstance();
-        $pdo2 = Connect::getInstance();
-        $pdo3 = Connect::getInstance();
+            $exec = Connect::getInstance()->exec("UPDATE users SET first_name = 'JUJUBA', last_name='COLORIDA' WHERE id = 55");
 
-        echo '<pre>';
-        var_dump(
-            $pdo1, 
-            $pdo2, 
-            $pdo3,
-            Connect::getInstance(),
-            Connect::getInstance()->getAvailableDrivers(), // banco de dados que o PDO consegue acessar no momento em minha máquina
-            Connect::getInstance()->getAttribute(PDO::ATTR_DRIVER_NAME) // driver que está sendo utilizado
-        );
-        echo '</pre>';
+            echo "<pre>";
+            print_r($exec);
+            echo "</pre>";
+        } catch (PDOException $e) {
+            var_dump($e);
+        }
+        ?>
+        <br><br>
+
+
+
+        <h2 class="">
+            Delete
+            <span>
+                | Linha <?= __LINE__ ?>
+            </span>
+        </h2>
+
+        <?php
+        ############################################################
+        ############################################################
+
+
+        try {
+            $exec = Connect::getInstance()->exec("DELETE FROM users WHERE id > 50");
+
+            echo "<pre>";
+            print_r($exec);
+            echo "</pre>";
+        } catch (PDOException $e) {
+            var_dump($e);
+        }
         ?>
         <br><br>
 

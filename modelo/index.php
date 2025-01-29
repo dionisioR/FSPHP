@@ -28,6 +28,7 @@
 
     <?php
     require __DIR__ . "/source/autoload.php";
+    use Source\Database\Connect;
     ?>
     <header class="text-center p-5">
         <h1 class="display-3">Relacionamento entre Objetos</h1>
