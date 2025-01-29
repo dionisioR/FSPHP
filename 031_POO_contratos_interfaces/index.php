@@ -30,28 +30,75 @@
     require __DIR__ . "/source/autoload.php";
     ?>
     <header class="text-center p-5">
-        <h1 class="display-3">Relacionamento entre Objetos</h1>
+        <h1 class="display-3">Contratos e interfaces</h1>
     </header>
 
+    <!-- [implementação] Um contrato de quais métodos a classe deve implementar -->
     <main class="container">
+        <h2 class="">
+        Implementação
+            <span>
+                | Linha <?= __LINE__ ?>
+            </span>
+        </h2>
+        <?php
+        // require __DIR__ . "/source/Contracts/UserInterface.php";
+        // require __DIR__ . "/source/Contracts/User.php";
+        $user = new Source\Contracts\User(
+            "Rodrigo",
+            "Dionisio",
+            "rd3w@g.com"
+        );
+
+        $admin = new Source\Contracts\UserAdmin(
+            "Rodrigo Admin",
+            "Dionisio Admin",
+            "rd3w_adm@g.com",
+        );
+
+        echo "<pre>";
+        var_dump($user, $admin);
+        echo "</pre>";
+
+
+
+        ?>
+        <br><br>
+        <!--################################################# -->
+        <!-- [associação] Um exemplo associado ao login -->
+        <!--################################################# -->
+
         <h2 class="">
             Associação
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
+
         <?php
 
+        $login = new Source\Contracts\Login();
+
+        $loginUser = $login->loginUser($user);
+        $loginAdmin = $login->loginAdmin($admin);
+
+        echo "<pre>";
+        var_dump(
+            $loginUser,
+            $loginAdmin
+        );
+        echo "</pre>";
 
 
-
-        ?>
+        ?> 
         <br><br>
         <!--################################################# -->
+        <!-- [Dependência] - Dependency Injection oi DI, é um contrado de relação entre objetos
+         onde um método assina seu atributos com uma interface -->
         <!--################################################# -->
 
         <h2 class="">
-            Agregação
+            Dependência
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
@@ -59,23 +106,16 @@
 
         <?php
 
-
-
-
-        ?>
-        <br><br>
-        <!--################################################# -->
-        <!--################################################# -->
-
-        <h2 class="">
-            Composição
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-
-        <?php
-
+        echo "<pre>";
+        var_dump(
+            $login->login($user),
+            $login->login($user)->getFirstName(),
+            $login->login($user)->getEmail(),
+            $login->login($admin),
+            $login->login($admin)->getFirstName(),
+            $login->login($admin)->getEmail()
+        );
+        echo "</pre>";
 
 
 

@@ -30,7 +30,8 @@
     require __DIR__ . "/source/autoload.php";
     ?>
     <header class="text-center p-5">
-        <h1 class="display-3">Relacionamento entre Objetos</h1>
+        <h1 class="display-3">Erro, conexão e execução
+        </h1>
     </header>
 
     <main class="container">

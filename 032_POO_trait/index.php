@@ -30,64 +30,73 @@
     require __DIR__ . "/source/autoload.php";
     ?>
     <header class="text-center p-5">
-        <h1 class="display-3">Relacionamento entre Objetos</h1>
+        <h1 class="display-3">Trait</h1>
     </header>
 
     <main class="container">
+
+        <!--################################################# -->
+        <!-- [trait] São traços de código que podem ser reutilizados por mais de uma classe-->
+        <!--################################################# -->
+
         <h2 class="">
-            Controle de erros
+            Trait
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
         <?php
-        ############################################################
-        ############################################################
 
+        $user = new Source\Traits\User("Dio","Brito","db@g.com");
+        $address = new Source\Traits\Address("Rua 1","123","Bairro 1");
+
+        $register = new Source\Traits\Register($user,$address);
+
+        echo "<pre>";
+        print_r($register);
+        print_r($register->getUser());
+        print_r($register->getUser()->getFirstName());
+        print_r($register->getAddress());
+        print_r($register->getAddress()->getStreet());
+        echo "</pre>";
 
 
         ?>
         <br><br>
 
-
-
-
         <h2 class="">
-            Php Data Object
+            Agregação
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
 
         <?php
-        ############################################################
-        ############################################################
+
 
 
 
         ?>
         <br><br>
-
-        
-
-
+        <!--################################################# -->
+        <!--################################################# -->
 
         <h2 class="">
-            Conexão com singleton
+            Composição
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
 
         <?php
-        ############################################################
-        ############################################################
+
 
 
 
         ?>
-         <br><br>
-
+        <br><br>
+        <!--################################################# -->
+        <!--################################################# -->
 
 
     </main>
