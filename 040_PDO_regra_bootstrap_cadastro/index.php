@@ -34,47 +34,32 @@
 
     ?>
     <header class="text-center p-5">
-        <h1 class="display-3">Inicialização de dados</h1>
+        <h1 class="display-3">Bootstrap e cadastro</h1>
     </header>
 
     <main class="container">
         <h2 class="">
-            load
+            bootstrap
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
         <?php
-        // load por primary key (id)
+        // [bootstrap] inicialização dos dados
 
         $model = new \Source\Models\UserModel();
-        $user = $model->load(1);
-
-        echo "<pre>";
-        var_dump($user, "{$user->first_name} {$user->last_name}");
-        echo "</pre>";
-
-
-        ?>
-        <br><br>
-
-
-
-
-        <h2 class="">
-            find
-            <span>
-                | Linha <?= __LINE__ ?>
-            </span>
-        </h2>
-
-        <?php
-        // find - pesquisa por e-mail
-        $user = $model->find("beatriz.rocha@email.com");
+        $user = $model->bootstrap(
+            "Rd3W", 
+            'Cursos',
+            "rd3w1@g.com",
+            "12345678901"
+        );
 
         echo "<pre>";
         var_dump($user);
         echo "</pre>";
+        
+        
 
 
         ?>
@@ -84,27 +69,44 @@
 
 
         <h2 class="">
-            all
+            save create
             <span>
                 | Linha <?= __LINE__ ?>
             </span>
         </h2>
 
         <?php
-        // all - retorna todos os registros
-        $all = $model->all(5);
-        echo "<pre>";
-        var_dump($all);
-        echo "</pre>";
-        echo "<hr/>";
+        // [save create] salvar o usuário ativo (active record)
+        
+        // de acordo com nossas regras de negócio esses campons não podem ser alterados
+        // $user->id = 10;  
+        // $user->created_at = date("Y/m/d H:i");
 
 
-        /** @var \Source\Models\UserModel $user */
-        foreach ($all as $user) {
-            echo "<p>{$user->first_name} {$user->last_name}</p>";
+        // Testes
+        // $user->email = null;
+        // $user->email = 'cursos';
+
+        if(!$model->find($user->email)){
+            echo "<p class='alert alert-danger'>Cadastro</p>";
+            $user->save();
+        }else{
+            echo "<p class='alert alert-success'>Read</p>";
+            $user = $model->find($user->email);
         }
+
+
+
+
+        echo "<pre>";
+        var_dump($user);
+        echo "</pre>";
+        
+        
+
         ?>
         <br><br>
+
 
 
 

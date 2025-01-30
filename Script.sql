@@ -126,3 +126,100 @@ INSERT INTO users_address (street, number, complement, user_id) VALUES
 ('Rua do Sol Nascente', '4747', 'Conjunto 8', 50);
 
 select * from users_address;
+
+-- ------------------------------------------------
+select * from users order by id desc;
+select * from users_address order by id desc;
+
+-- ------------------------------------------------
+
+CREATE TABLE users_2 (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255) not null,
+    last_name VARCHAR(255) not null,
+    email VARCHAR(255) not null unique,
+    document VARCHAR(255),
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp
+) ENGINE=InnoDB;
+
+
+INSERT INTO users_2 (first_name, last_name, email, document, created_at, updated_at) VALUES
+('João', 'Silva', 'joao.silva@email.com', '12345678901', NOW(), NOW()),
+('Maria', 'Oliveira', 'maria.oliveira@email.com', '12345678902', NOW(), NOW()),
+('Pedro', 'Costa', 'pedro.costa@email.com', '12345678903', NOW(), NOW()),
+('Ana', 'Santos', 'ana.santos@email.com', '12345678904', NOW(), NOW()),
+('Lucas', 'Pereira', 'lucas.pereira@email.com', '12345678905', NOW(), NOW()),
+('Beatriz', 'Rocha', 'beatriz.rocha@email.com', '12345678906', NOW(), NOW()),
+('Carlos', 'Mendes', 'carlos.mendes@email.com', '12345678907', NOW(), NOW()),
+('Fernanda', 'Almeida', 'fernanda.almeida@email.com', '12345678908', NOW(), NOW()),
+('Juliana', 'Martins', 'juliana.martins@email.com', '12345678909', NOW(), NOW()),
+('Ricardo', 'Lima', 'ricardo.lima@email.com', '12345678910', NOW(), NOW()),
+('Sofia', 'Araujo', 'sofia.araujo@email.com', '12345678911', NOW(), NOW()),
+('Bruno', 'Gomes', 'bruno.gomes@email.com', '12345678912', NOW(), NOW()),
+('Paula', 'Nunes', 'paula.nunes@email.com', '12345678913', NOW(), NOW()),
+('Rafael', 'Souza', 'rafael.souza@email.com', '12345678914', NOW(), NOW()),
+('Camila', 'Barbosa', 'camila.barbosa@email.com', '12345678915', NOW(), NOW()),
+('Diego', 'Pinto', 'diego.pinto@email.com', '12345678916', NOW(), NOW()),
+('Jéssica', 'Ferreira', 'jessica.ferreira@email.com', '12345678917', NOW(), NOW()),
+('Gustavo', 'Martins', 'gustavo.martins@email.com', '12345678918', NOW(), NOW()),
+('Larissa', 'Cardoso', 'larissa.cardoso@email.com', '12345678919', NOW(), NOW()),
+('Felipe', 'Silveira', 'felipe.silveira@email.com', '12345678920', NOW(), NOW()),
+('Natália', 'Dias', 'natalia.dias@email.com', '12345678921', NOW(), NOW()),
+('Fábio', 'Vieira', 'fabio.vieira@email.com', '12345678922', NOW(), NOW()),
+('Camila', 'Lopes', 'camila.lopes@email.com', '12345678923', NOW(), NOW()),
+('Eduardo', 'Moura', 'eduardo.moura@email.com', '12345678924', NOW(), NOW()),
+('Isabela', 'Martins', 'isabela.martins@email.com', '12345678925', NOW(), NOW()),
+('Leandro', 'Cavalcante', 'leandro.cavalcante@email.com', '12345678926', NOW(), NOW()),
+('Tainá', 'Rodrigues', 'taina.rodrigues@email.com', '12345678927', NOW(), NOW()),
+('Marcelo', 'Santos', 'marcelo.santos@email.com', '12345678928', NOW(), NOW()),
+('Talita', 'Araújo', 'talita.araujo@email.com', '12345678929', NOW(), NOW()),
+('Felipe', 'Costa', 'felipe.costa@email.com', '12345678930', NOW(), NOW());
+
+create table users_address_2(
+id int primary key auto_increment,
+street varchar(255) not null,
+number varchar(255) not null,
+complement varchar(255),
+created_at timestamp default current_timestamp,
+updated_at timestamp default current_timestamp,
+user_id int not null,
+foreign key(user_id) references users(id)
+)ENGINE=InnoDB;
+
+INSERT INTO users_address_2 (street, number, complement, created_at, updated_at, user_id) VALUES
+('Rua das Flores', '123', 'Apto 101', NOW(), NOW(), 1),
+('Avenida Brasil', '456', 'Sala 205', NOW(), NOW(), 2),
+('Rua São João', '789', 'Casa 03', NOW(), NOW(), 3),
+('Rua do Sol', '101', 'Apto 202', NOW(), NOW(), 4),
+('Avenida Paulista', '202', 'Loja 105', NOW(), NOW(), 5),
+('Rua das Pedras', '303', 'Apto 304', NOW(), NOW(), 6),
+('Rua do Campo', '404', 'Casa 105', NOW(), NOW(), 7),
+('Rua das Palmeiras', '505', 'Apto 506', NOW(), NOW(), 8),
+('Avenida do Rio', '606', 'Piso 2', NOW(), NOW(), 9),
+('Rua Central', '707', 'Sala 307', NOW(), NOW(), 10),
+('Rua da Ladeira', '808', 'Apto 409', NOW(), NOW(), 11),
+('Rua dos Lírios', '909', 'Casa 510', NOW(), NOW(), 12),
+('Avenida dos Trabalhadores', '1010', 'Apto 610', NOW(), NOW(), 13),
+('Rua do Comércio', '1111', 'Loja 711', NOW(), NOW(), 14),
+('Rua dos Pinheiros', '1212', 'Casa 812', NOW(), NOW(), 15),
+('Rua do Parque', '1313', 'Piso 13', NOW(), NOW(), 16),
+('Avenida dos Estudantes', '1414', 'Apto 914', NOW(), NOW(), 17),
+('Rua da Paz', '1515', 'Casa 1015', NOW(), NOW(), 18),
+('Avenida dos Lírios', '1616', 'Sala 1116', NOW(), NOW(), 19),
+('Rua do Arco', '1717', 'Apto 1217', NOW(), NOW(), 20),
+('Rua dos Andrades', '1818', 'Casa 1318', NOW(), NOW(), 21),
+('Rua da Serra', '1919', 'Piso 1419', NOW(), NOW(), 22),
+('Avenida das Estações', '2020', 'Apto 1520', NOW(), NOW(), 23),
+('Rua da Vitória', '2121', 'Casa 1621', NOW(), NOW(), 24),
+('Rua Nova', '2222', 'Loja 1722', NOW(), NOW(), 25),
+('Rua do Horizonte', '2323', 'Apto 1823', NOW(), NOW(), 26),
+('Avenida das Águas', '2424', 'Casa 1924', NOW(), NOW(), 27),
+('Rua do Pôr do Sol', '2525', 'Piso 2025', NOW(), NOW(), 28),
+('Avenida da Liberdade', '2626', 'Apto 2126', NOW(), NOW(), 29),
+('Rua da Estrela', '2727', 'Casa 2227', NOW(), NOW(), 30);
+
+-- ---------------------------------------------------------
+select * from users_2 order by id desc;
+select * from users_address_2;
+
