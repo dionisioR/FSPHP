@@ -1,10 +1,10 @@
 <?php
 
-namespace Source\Models;
+namespace Source\Core;
 
 use PDO;
 use PDOException;
-use Source\Database\Connect;
+
 
 abstract class Model
 {

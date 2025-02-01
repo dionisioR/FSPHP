@@ -27,10 +27,9 @@
 <body>
 
     <?php
-    require __DIR__ . "/source/autoload.php";
+    require __DIR__ . "/../source/autoload.php";
 
-    use Source\Database\Connect;
-    use Source\Models\UserModel;
+
 
     ?>
     <header class="text-center p-5">
@@ -49,6 +48,9 @@
             [configurações] Um acesso global a tudo que pode ser configurado no projeto.
         */
 
+        echo "<pre>";
+        var_dump(get_defined_constants(true)["user"]);
+        echo "</pre>";
 
 
         ?>
@@ -64,6 +66,21 @@
        [refatoramento] Iniciando o desenvolvimento de uma arquitetura de projeto
        */
 
+        use Source\Core\Connect;
+
+        $read = Connect::getInstance()->prepare("SELECT * FROM users LIMIT 1,3");
+        $read->execute();
+        echo "<pre>";
+        var_dump($read->fetchAll());
+        echo "</pre>";
+
+        echo '<hr>';
+
+        use Source\Models\User;
+        $user = (new User())->load(1);
+        echo "<pre>";
+        var_dump($user);
+        echo "</pre>";
         ?>
         <br><br>
 

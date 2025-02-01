@@ -2,7 +2,9 @@
 
 namespace Source\Models;
 
-class UserModel extends Model
+use Source\Core\Model;
+
+class User extends Model
 {
     /**
      * @var array $safe no update and create
@@ -16,7 +18,7 @@ class UserModel extends Model
     // tabela do banco de dados
     protected static $entity = "users_2";
 
-    public function bootstrap(string $first_name, string $last_name, string $email, string $document = null): ?UserModel{
+    public function bootstrap(string $first_name, string $last_name, string $email, string $document = null): ?User{
         $this->first_name = $first_name;
         $this->last_name = $last_name;
         $this->email = $email;
@@ -26,7 +28,7 @@ class UserModel extends Model
 
     }
 
-    public function load(int $id, string $columns = "*") : ?UserModel{
+    public function load(int $id, string $columns = "*") : ?User{
         $load = $this->read("SELECT {$columns} FROM " . self::$entity . " WHERE id = :id", "id={$id}");
         
         // validando o $load
@@ -39,7 +41,7 @@ class UserModel extends Model
         return $load->fetchObject(__CLASS__);
     }
 
-    public function find($email, string $columns = "*"): ?UserModel{
+    public function find($email, string $columns = "*"): ?User{
         $find = $this->read("SELECT {$columns} FROM " . self::$entity . " WHERE email = :email", "email={$email}");
         
         // validando o $load
@@ -65,7 +67,7 @@ class UserModel extends Model
         return $all->fetchAll( \PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public function save() : ?UserModel{
+    public function save() : ?User{
         
         if(!$this->required()){
             return null;
@@ -114,7 +116,7 @@ class UserModel extends Model
 
     }
 
-    public function destroy() : ?UserModel{
+    public function destroy() : ?User{
         if(!empty($this->id)){
             $this->delete(self::$entity, "id = :id", "id={$this->id}");
         }
