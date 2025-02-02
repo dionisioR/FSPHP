@@ -24,3 +24,13 @@ define("CONF_DATE_APP", "Y-m-d H:i:s");
  * SESSION
  */
 define("CONF_SES_PATH", __DIR__ . "/../../storage/sessions");
+
+/**
+ * MESSAGE
+ */ 
+define("CONF_MESSAGE_CLASS","alert");
+define("CONF_MESSAGE_INFO","alert-info");
+define("CONF_MESSAGE_SUCCESS","alert-success");
+define("CONF_MESSAGE_WARNING","alert-warning");
+define("CONF_MESSAGE_ERROR","alert-danger");
+define("CONF_MESSAGE_PRIMARY","alert-primary");
