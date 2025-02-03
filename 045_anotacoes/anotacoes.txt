@@ -1,0 +1,5 @@
+07-06   Camada de manipulação pt1 [ funções globais que agilizam a criação da aplicação]
+        Funções de string
+        montando uma URL tirando todos os caracteres especiais,etc.[Dá pra fazer]
+
+07-07   Camada de manipulação pt2 [Continuação - Dá para fazer]
