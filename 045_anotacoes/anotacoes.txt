@@ -6,3 +6,5 @@
 
 07-08   Camada de manipulação pt3 [Validando e-mail, url] 
         Trabalhando com redirecionamento 
+
+07-09   Segurança e gestão de senhas [criptografia]
