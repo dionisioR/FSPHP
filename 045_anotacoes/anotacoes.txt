@@ -12,3 +12,14 @@
 07-10   Ataques XSS e CSRF [fazer]
 
 07-11   Refatorando o código model user
+
+07-12   Validando o cadastro de usuário 
+
+07-13   Verificando password com hash
+
+07-14   Consulta em palavras reservadas
+
+----------------------------------------------------------------------------------------------------------------
+
+08-01   Padrões de Projetos
+
