@@ -23,3 +23,15 @@
 
 08-01   Padrões de Projetos
 
+08-02  Packagist (cometário sobre pacotes)
+
+08-03   Gestão de dependências
+        Criou um arquivo .json para o composer
+
+08-04   Atualizando interpretador do PHP [configurando php.ini]
+
+08-05   Envio de e-mail com Sendgrid - Utilizando um componente [PHPMailer - packegist.org]
+        Exemplo com SENDGRID
+
+08-06   Sintetizando e abstraindo
+        Melhorando o envio de e-mail
